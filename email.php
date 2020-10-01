@@ -51,7 +51,7 @@ function validate($firstName,$lastName,$emailAddress,$company,$message)
       $return_array['name_msg'] = 'Enter valid name.';
     }
   }
-    
+		
   if($message == '')
   {
     $return_array['success'] = '0';
@@ -67,13 +67,21 @@ function validate($firstName,$lastName,$emailAddress,$company,$message)
   return $return_array;
 }
 
+$firstName = $_POST['txtFirstName'];
+$lastName = $_POST['txtLastName'];
+$emailAddress = $_POST['txtEmailAddress'];
+$company =  $_POST['txtCompany'];
+$message = $_POST['txtMessage'];
+
+
 $return_array = validate($firstName,$lastName,$emailAddress,$company,$message);
 
 if($return_array['success'] == '1')
 {
-  send_email($firstName,$lastName,$emailAddress,$company,$message);
+	send_email($firstName,$lastName,$emailAddress,$company,$message);
 }
 header('Content-type: text/json');
 echo json_encode($return_array);
 die();
 ?>
+
